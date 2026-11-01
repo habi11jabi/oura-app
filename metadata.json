@@ -1,0 +1,6 @@
+{
+  "name": "Zafrin Electronics",
+  "description": "Mobile inventory, sales, customer tracking, and reporting app for Zafrin Electronics / Apple Area BD with full offline support.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
