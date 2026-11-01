@@ -14,10 +14,11 @@ import { DuePaymentModal } from './components/DuePaymentModal';
 import { EditSaleModal } from './components/EditSaleModal';
 import { ScannerModal } from './components/ScannerModal';
 import { ProductDetailModal } from './components/ProductDetailModal';
+import { InstallAppModal } from './components/InstallAppModal';
 import { CheckCircle2 } from 'lucide-react';
 
 const MainContent: React.FC = () => {
-  const { currentTab, toastMessage } = useInventory();
+  const { currentTab, toastMessage, isInstallModalOpen, closeInstallModal } = useInventory();
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white transition-colors duration-150">
@@ -40,6 +41,7 @@ const MainContent: React.FC = () => {
       <DuePaymentModal />
       <EditSaleModal />
       <ScannerModal />
+      <InstallAppModal isOpen={isInstallModalOpen} onClose={closeInstallModal} />
 
       {/* Toast Feedback Notification */}
       {toastMessage && (

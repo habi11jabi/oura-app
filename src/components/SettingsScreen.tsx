@@ -14,13 +14,23 @@ import {
   DownloadCloud,
   Sun,
   Moon,
-  Monitor
+  Monitor,
+  Smartphone
 } from 'lucide-react';
 import { ShopSettings, ThemeMode } from '../types';
 
 export const SettingsScreen: React.FC = () => {
-  const { settings, updateSettings, resetSettings, clearAllData, loadDemoData, themeMode, setThemeMode, t } =
-    useInventory();
+  const {
+    settings,
+    updateSettings,
+    resetSettings,
+    clearAllData,
+    loadDemoData,
+    themeMode,
+    setThemeMode,
+    openInstallModal,
+    t
+  } = useInventory();
   const isEnglish = settings.appLanguage === 'EN';
 
   const [formData, setFormData] = useState<ShopSettings>(() => ({ ...settings }));
@@ -554,7 +564,37 @@ export const SettingsScreen: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 5: Data Management & Reset */}
+        {/* Section 5: Mobile App Installation & APK Guide */}
+        <div className="bg-gradient-to-br from-emerald-500/10 via-sky-500/5 to-indigo-500/10 dark:from-emerald-950/30 dark:via-sky-950/20 dark:to-indigo-950/30 rounded-3xl p-6 border border-emerald-500/30 shadow-xs space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-500/20">
+                <Smartphone className="h-6 w-6" />
+              </div>
+              <div>
+                <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
+                  {isEnglish ? 'Install on Android / Mobile Device' : 'মোবাইলে অ্যাপ ইনস্টল ও APK গাইড'}
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+                  {isEnglish
+                    ? '1-Tap home screen install (no warnings) or download the Android APK'
+                    : '১-ট্যাপে ইনস্টল করুন কোনো ওয়ার্নিং ছাড়াই অথবা অ্যান্ড্রয়েড APK ফাইল ডাউনলোড করুন'}
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={openInstallModal}
+              className="py-2.5 px-5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 transition-all self-start sm:self-center"
+            >
+              <Smartphone className="h-4 w-4" />
+              <span>{isEnglish ? 'Open Install & APK Guide' : 'ইনস্টল ও APK অপশন খুলুন'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Section 6: Data Management & Reset */}
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
           <div className="flex items-center gap-2.5">
             <div className="h-9 w-9 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold">

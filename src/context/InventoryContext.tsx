@@ -99,6 +99,10 @@ interface InventoryContextType {
   closeScanner: () => void;
   onScannerBarcodeFound: (code: string) => void;
 
+  isInstallModalOpen: boolean;
+  openInstallModal: () => void;
+  closeInstallModal: () => void;
+
   toastMessage: string | null;
   showToast: (msg: string) => void;
   t: typeof BanglaStrings;
@@ -216,9 +220,12 @@ export const InventoryProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [editingSale, setEditingSale] = useState<Sale | null>(null);
   const [saleForDuePayment, setSaleForDuePayment] = useState<Sale | null>(null);
   const [viewingProduct, setViewingProduct] = useState<Product | null>(null);
-
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [scannerTarget, setScannerTarget] = useState<'search' | 'imei-input'>('search');
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+
+  const openInstallModal = () => setIsInstallModalOpen(true);
+  const closeInstallModal = () => setIsInstallModalOpen(false);
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -651,6 +658,10 @@ export const InventoryProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         openScanner,
         closeScanner,
         onScannerBarcodeFound,
+
+        isInstallModalOpen,
+        openInstallModal,
+        closeInstallModal,
 
         toastMessage,
         showToast,

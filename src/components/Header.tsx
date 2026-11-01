@@ -1,9 +1,9 @@
 import React from 'react';
 import { useInventory } from '../context/InventoryContext';
-import { Plus, QrCode, Sun, Moon } from 'lucide-react';
+import { Plus, QrCode, Sun, Moon, Smartphone } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { settings, updateSettings, toggleTheme, isDark, openAddProduct, openScanner, t } =
+  const { settings, updateSettings, toggleTheme, isDark, openAddProduct, openScanner, openInstallModal, t } =
     useInventory();
   const isEnglish = settings.appLanguage === 'EN';
 
@@ -58,7 +58,20 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Right Action Tools */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
+            {/* Install Mobile App Button */}
+            <button
+              onClick={openInstallModal}
+              className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 hover:from-emerald-500/20 hover:to-teal-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 transition-all flex items-center gap-1.5 active:scale-95 shadow-xs"
+              title={isEnglish ? 'Install App on Mobile' : 'ফোনে অ্যাপ ইনস্টল করুন'}
+              aria-label={isEnglish ? 'Install App on Mobile' : 'ফোনে অ্যাপ ইনস্টল করুন'}
+            >
+              <Smartphone className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-xs font-extrabold hidden sm:inline">
+                {isEnglish ? 'Install App' : 'অ্যাপ ইনস্টল'}
+              </span>
+            </button>
+
             {/* Dark / Light Theme Toggle Button */}
             <button
               onClick={toggleTheme}
